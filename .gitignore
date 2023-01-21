@@ -1,0 +1,21 @@
+# ignore package-lock.json
+package-lock.json
+
+# ignore .env
+.env
+
+# ignore .env.local
+.env.local
+
+# ignore .env.development
+.env.development
+
+# ignore node_modules
+node_modules
+
+
+
+# ignore package.json
+package.json
+
+
