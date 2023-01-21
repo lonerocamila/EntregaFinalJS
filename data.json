@@ -23,7 +23,7 @@
     {   "id": 4,
         "nombre": "focus",
         "marca": "Boally",
-        "imagen": "./img/emociones.jpg",
+        "imagen": "./img/focus.jpg",
         "precio": "50",
         "detalles": ["pack para obtener mayor concentracion"]
      }
