@@ -2,7 +2,7 @@
     {   "id": 1,
         "nombre": "bekind",
 		"marca": "Boally",
-		"imagen": "./img/bekind.webp",
+		"imagen": "./img/bekind.jpg",
 		"precio": "500",
         "detalles": ["pack de ejercicios Be Kind"]
     },
@@ -23,7 +23,7 @@
     {   "id": 4,
         "nombre": "focus",
         "marca": "Boally",
-        "imagen": "./img/emociones.jpg",
+        "imagen": "./img/focus.jpg",
         "precio": "50",
         "detalles": ["pack para obtener mayor concentracion"]
      }
