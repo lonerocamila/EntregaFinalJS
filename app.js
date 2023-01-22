@@ -16,8 +16,6 @@ fetch("data.json") // Hacemos la petición al archivo data.json
 
 
 function mostrarProductos(productos) { // agregar el parámetro productos.
-const mostrarProductos = JSON.stringify(producto);
-                            mostrarProductos.forEach((producto) => {
                                 let content = document.createElement("div");
                                 content.className = "card";
                                 content.className = "card";
@@ -48,7 +46,7 @@ const mostrarProductos = JSON.stringify(producto);
                     });
 
                 });
-            });
+            }
 
            
 
@@ -64,9 +62,9 @@ verCarrito.addEventListener("click", () => {
         <p class="cantidad">${producto.cantidad}</p>
         `;
         modalContainer.append(carritoContent);
-        
-
+    
 });
+
     const total = carrito.reduce((acc, el)=> acc + el.precio, 0);
     const totalComprado = document.createElement("div");
     totalComprado.className = "total-content"
@@ -75,7 +73,6 @@ verCarrito.addEventListener("click", () => {
 });
 
 
-                        }))
-                    }
+                    
 
 // FILTRO DE BUSQUEDA
