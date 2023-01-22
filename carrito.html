@@ -10,49 +10,146 @@
     <title>Carrito 🛒</title>
 </head>
 <header>
-    <div class="nav-container">  
-        <div class="navbar">
-        <!-- NAVBAR -->
-        <!-- BANNER -->
-        <div class="logo">
-            <a href="./index.html"><img src="./img/android-chrome-192x192.png" width="50"  alt="logo"></a>
+  <div class="container-fluid">
+    <!-- BANNER -->
+    <div class="navbar-brand">
+        <a href="./index.html"><img src="./img/android-chrome-192x192.png" width="80"  alt="logo"></a>
+    </div>
+    <div class="banner">
+        <div class="container">
+        <h1 class="therapy">Therapy Shop</h1>
+        <p>El mejor servicio para vos</p>
         </div>
-        <div class="banner">
-            <div class="container">
-            <h1>Therapy Shop</h1>
-            <p>El mejor servicio para vos</p>
+    </div>
+<!-- FIN BANNER -->
+ <!-- NAVBAR --> 
+ <div class="container col-md-7 col-lg-4 col-xs-2">
+    <div class="navbar">
+       <ul class="nav">
+        <li class="nav-ite">
+            <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
+         </li>
+            <div class="search">
+                <input type="text" placeholder="Buscar">
+                <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search-heart-fill" viewBox="0 0 16 16">
+                    <path d="M6.5 13a6.474 6.474 0 0 0 3.845-1.258h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.008 1.008 0 0 0-.115-.1A6.471 6.471 0 0 0 13 6.5 6.502 6.502 0 0 0 6.5 0a6.5 6.5 0 1 0 0 13Zm0-8.518c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018Z"/>
+                  </svg></button>
             </div>
-        </div>
-    <!-- FIN BANNER -->
-    <div class="nav">
-    <ul class="nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./contacto.html">Contacto</a>
-        </li>
-        <div class="search">
-            <input type="text" placeholder="Buscar">
-            <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search-heart-fill" viewBox="0 0 16 16">
-                <path d="M6.5 13a6.474 6.474 0 0 0 3.845-1.258h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.008 1.008 0 0 0-.115-.1A6.471 6.471 0 0 0 13 6.5 6.502 6.502 0 0 0 6.5 0a6.5 6.5 0 1 0 0 13Zm0-8.518c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018Z"/>
-              </svg></button>
-        </div>
-        <div class="carrito">
-          <a class="nav-link active" aria-current="page" href="#"><h1 class="ver-carrito" width="40" heigth="15">🛒</h1></a>
+            <div class="carrito">
+              <li class="nav-item dropdown">  
+                <a class="nav-link dropdown-toggle" aria-current="page" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <h1 id="verCarrito" class="ver-carrito" width="15" heigth="5">🛒</h1> 
+                </a>
+                <ul class="dropdown-menu">
+                <table id="lista-carrito tbody">
+
+                    <div class="grid text-center">
+      
+                    </div>
+                    <div class="container-fluid">
+                      <thead>
+                          <tr>
+                              <th class="g-col-4 p-2">Imagen</th>
+                              <th class="g-col-4 p-2">Nombre</th>
+                              <th class="g-col-4 p-2">Precio</th>
+                          </tr>
+                            </thead>
+                            
+                            </table>
+                            <button id="vaciarCarrito" class="vaciar-carrito bg-danger text-light">Vaciar carrito</button>
+                            <button id="FinalizarCompra" class="Finalizar-compra bg-success text-light" href="./carrito.html">Finalizar Compra</button>
+                          </ul>
+                      </div>
+                      </div>
+                      </div>
       </div>
-        <div class="user">
-            <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="100" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-              </svg></a>
-            </ul>
-        </div>
-        </div>
+   </div>
 
 </header>
 <body>
     <main>
+      <div class="title">Compra</div>
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col">
+                    <h2 class="d-flex justify-content-center mb-3">Realizar Compra</h2>
+                    <form id="procesar-pago">
+                        <div class="form-group row">
+                            <label for="cliente" class="col-12 col-md-2 col-form-label h2">Cliente :</label>
+                            <div class="col-12 col-md-10">
+                                <input type="text" class="form-control" id="cliente"
+                                    placeholder="Ingresa nombre cliente" name="destinatario">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-12 col-md-2 col-form-label h2">Correo :</label>
+                            <div class="col-12 col-md-10">
+                                <input type="text" class="form-control" id="correo" placeholder="Ingresa tu correo" name="cc_to">
+                            </div>
+                        </div>
+
+                        <div id="carrito" class="form-group table-responsive" >
+                            <table class="form-group table" id="lista-compra" >
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Imagen</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Sub Total</th>
+                                        <th scope="col">Eliminar</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody >
+
+                                </tbody>
+                                <tr>
+                                    <th colspan="4" scope="col" class="text-right">SUB TOTAL :</th>
+                                    <th scope="col">
+                                        <p id="subtotal"></p>
+                                    </th>
+                                    <!-- <th scope="col"></th> -->
+                                </tr>
+                                <tr>
+                                    <th colspan="4" scope="col" class="text-right">IGV :</th>
+                                    <th scope="col">
+                                        <p id="igv"></p>
+                                    </th>
+                                    <!-- <th scope="col"></th> -->
+                                </tr>
+                                <tr>
+                                    <th colspan="4" scope="col" class="text-right">TOTAL :</th>
+                                    <th scope="col">
+                                        <input id="total" name="monto" class="font-weight-bold border-0" readonly style="background-color: white;"></input>
+                                    </th>
+                                    <!-- <th scope="col"></th> -->
+                                </tr>
+
+                            </table>
+                        </div>
+
+                        <div class="row justify-content-center" id="loaders">
+                            <img id="cargando" src="img/cargando.gif" width="220">
+                        </div>
+
+                        <div class="row justify-content-between">
+                            <div class="col-md-4 mb-2">
+                                <a href="index.html" class="btn btn-info btn-block">Seguir comprando</a>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <input type="submit" class="btn btn-success btn-block" id="procesar-compra" value="Realizar compra">
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+
+
+            </div>
+
+        </div>  
 
     </main>
     <footer>
