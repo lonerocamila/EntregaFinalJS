@@ -3,6 +3,7 @@ const verCarrito  = document.getElementById("verCarrito");
 const productoLS = localStorage.getItem("carrito");
 const producto = document.getElementById("producto");
 const filtro = document.getElementById("barraBusqueda");
+const escuchar = document.querySelector('enviar-btn')
 const pintarCarrito = () => {
 
 let carrito = [];
@@ -206,4 +207,8 @@ function vaciarLS(){
 
 
         // darle funcionalidad al boton de enviar en carrrito
-        enviarBtn.addEventListener('click',)
+       function escuchar(){
+        
+       enviarBtn.addEventListener ('click', enviarBtn);
+
+       } 
