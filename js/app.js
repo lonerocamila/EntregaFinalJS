@@ -144,3 +144,26 @@ fetchData();
     });
 
     }
+
+
+            // Escuchar la informacion del formulario
+            formulario.addEventListener("input", function () {
+
+                if (nombreForm.value === "") {
+                content.innerHTML = ` <p> Ingrese un nombre válido </p> `;
+                }
+            });
+            
+            correoForm.addEventListener("input", function () {
+                if (correoForm.value === "") {
+                content.innerHTML = ` </p> Ingrese un correo electrónico válido </p>` ;
+                }
+            });
+            
+            let formulario = document.querySelector("#form-control");
+            
+
+
+          
+
+        
