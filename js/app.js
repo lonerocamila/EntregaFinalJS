@@ -203,3 +203,4 @@ function vaciarLS(){
             let total = 0 , subtotal = 0, iva = 0 ;
             productoLS = this.obtenerProductosLS();
         }
+
