@@ -146,24 +146,41 @@ fetchData();
     }
 
 
-            // Escuchar la informacion del formulario
-            formulario.addEventListener("input", function () {
+           // Escuchar la informacion del formulario
+           function  formulario() {
+            addEventListener("input", function () {
 
-                if (nombreForm.value === "") {
-                content.innerHTML = ` <p> Ingrese un nombre válido </p> `;
-                }
-            });
-            
-            correoForm.addEventListener("input", function () {
-                if (correoForm.value === "") {
-                content.innerHTML = ` </p> Ingrese un correo electrónico válido </p>` ;
-                }
-            });
-            
-            let formulario = document.querySelector("#form-control");
-            
+                    if (nombreForm.value === "") {
+                    content.innerHTML = ` <p> Ingrese un nombre válido </p> `;
+                    }
+                });
+                
+                correoForm.addEventListener("input", function () {
+                    if (correoForm.value === "") {
+                    content.innerHTML = ` </p> Ingrese un correo electrónico válido </p>` ;
+                    }
+                });
+                
+                let formulario = document.querySelector("#form-control");
 
+            }
 
+                //  hacemos un filtro de busqueda para la barra de busqueda 
+
+             filtro = equipo.filter (producto.nombre );
+
+             function eliminarProductoLS(productoID){
+                let productosLS;
+                productosLS = this.obtenerProductosLS();
+                productosLS.forEach(productosLS,index => {
+                    if (productosLS.id === productoID){
+                        productosLS.splice(index,1)
+                    }
+                    localStorage.setItem('productos', JSON.stringify('productosLS'));
+                });
+                
+
+            }
           
 
         
