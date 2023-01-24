@@ -1,214 +1,146 @@
-
-const verCarrito  = document.getElementById("verCarrito");
-const productoLS = localStorage.getItem("carrito");
-const producto = document.getElementById("producto");
-const filtro = document.getElementById("barraBusqueda");
-const escuchar = document.querySelector('enviar-btn')
-const pintarCarrito = () => {
-
-let carrito = [];
-
-fetch("data.json") // Hacemos la petición al archivo data.json
-    .then(response => response.json()) // Convertimos la respuesta a JSON
-    .then(data => {
-        // Guardamos los datos en una variable
-        const productos = data;
-        // Llamamos a la función que muestra los productos
-        mostrarProductos(productos) // llamar a la función y que reciba productos
-    });
-
-    const cards = document.querySelectorAll(".shopContent");
-    cards.forEach((card) => {
-      card.addEventListener("click", (e) => {
-      });
-    });
-
-// mostramos los productos en la pagina principal
-
-function mostrarProductos(productos) { // agregar el parámetro productos.
-    productos.forEach(producto => { 
-                                let content = document.createElement("div");
-                                content.className = "card";
-                                content.className = "card";
-                                content.innerHTML = `
-                                <img src="{$producto.img}">
-                                <h3 class="nombre">${producto.nombre}</h3>
-                                <p class="descripcion">${producto.descripcion}</p>
-                                <p class="precio">${producto.precio} $ </p>
-                                <a href="carrito.html" class="btn btn-primary">Agregar al carrito</a>
-                        
-                        `;
-                 
-          
-                mostrarProductos.appendChild(content);
-                if (producto === carrito.id ){
-                    Swal.fire({
-                        icon: 'info',
-                        title: 'Oops...',
-                        text: 'El producto fue agregado!',
-                        timer: 1000,
-                        showConfirmButton: false,
-                      });
-            
-
-                let comprar = document.createElement("button");
-                comprar.innerText = "comprar";
-                comprar.className="comprar"; 
-               
-                content.append(comprar);
-                comprar.addEventListener("click", () => { 
-                    carrito.push({
-                       
-                        id: producto.id,
-                        img: producto.img,
-                        nombre: producto.nombre,
-                        precio: producto.precio,
-                        cantidad: 1,    
-                    });
-
-                });
-           
-                
-//  Agregamos los productos al carrito                           
-            verCarrito.addEventListener("click", () => {
-                carrito.forEach((producto) => {
-                    let carritoContent = document.createElement("div");
-                    carrito.innerHTML  = `
-                    <img src="${producto.img}">
-                    <h3 class="nombre">${producto.nombre}</h3>
-                    <p class="precio">${producto.precio} $ </p>
-                    <p class="cantidad">${producto.cantidad}</p>
-                    `;
-                    modalContainer.append(carritoContent);
-                
-            });
-
-                const total = carrito.reduce((acc, el)=> acc + el.precio, 0);
-                const totalComprado = document.createElement("div");
-                totalComprado.className = "total-content"
-                totalComprado.innerHTML = ` total: ${total} $`
-                modalContainer.append(totalComprado);
-                let eliminar = document.createElement("span");
-
-                eliminar.innnerText="❌";
-                eliminar.className = "eliminarProducto";
-                carritoContent.append("eliminar");
-                });
-            
-
-                function limpiarHTML() {
-                    carrito.innerHTML = "";
-                  }
-                  
-                  carrito.addEventListener("click", eliminarProducto);
-
-            function eliminarProducto (e){
-                if (e.target.classList.contains("btn-eliminarProducto")){
-                    let productoID = e.target.getAtribute("id");
-                    productoLS = carrito.filter(
-                        (producto) = (producto.id !== productoID)
-                    );
-                    carritoHTML();
-                }
-            }
-                  
-
-            // Escuchar la informacion del formulario
-            formulario.addEventListener("input", function () {
-
-                    if (nombreForm.value === "") {
-                    content.innerHTML = ` <p> Ingrese un nombre válido </p> `;
-                    }
-                });
-                
-                correoForm.addEventListener("input", function () {
-                    if (correoForm.value === "") {
-                    content.innerHTML = ` </p> Ingrese un correo electrónico válido </p>` ;
-                    }
-                });
-                
-                let formulario = document.querySelector("#form-control");
-                
-
-
-              
-
-            }
-
-            
-          
-
+const contenedorCards = document.getElementById("contenedorCards")
+const verCarrito= document.getElementById("verCarrito")
+const modalContainer= document.getElementById("modal-container")
+const cantidadCarrito =document.getElementById("cantidadCarrito")
+let carrito =JSON.parse(localStorage.getItem("carrito")) || [];
+const productos = document.getElementById ('shopContent');
+const fetchData = async () => {
+	fetch("data.json")
+		.then((response) => response.json())
+		.then((productos) => {
+			console.log(productos);
+			productos.forEach((producto) => {
+				let content = document.createElement("div");
+				content.className = "card";
+				content.innerHTML = `
+        <img src="${producto.img}" class="card-img-top">
+        <div class="card-body">
+        <h5 class="card-title">${producto.nombre}</h5>
+        <p class="card-text">${producto.peso} $${producto.precio}</p>
+        </div>
         
+        `;
+        contenedorCards.append(content);
 
-                //  hacemos un filtro de busqueda para la barra de busqueda 
+        let comprar = document.createElement("button");
+        comprar.innerText = "comprar";
+        comprar.className = "btn btn-primary";
 
-             let.filtro = equipo.filter (producto.nombre );
+        content.append(comprar);
 
-             function eliminarProductoLS(productoID){
-                let productosLS;
-                productosLS = this.obtenerProductosLS();
-                productosLS.forEach(productosLS,index => {
-                    if (productosLS.id === productoID){
-                        productosLS.splice(index,1)
+        comprar.addEventListener("click", () => {
+            Toastify({
+                text: "El producto se agrego correctamente",
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                style: {
+                    background: "linear-gradient(to right, green, green)",
+                },
+                onClick: function () {},
+            }).showToast();
+            const repeat = carrito.some(
+                (repeatProducto) => producto.id === producto.id,
+            );
+
+            if (repeat) {
+                carrito.map((productos) => {
+                    if (productos.id === producto.id) {
+                        productos.cantidad++;
                     }
-                    localStorage.setItem('productos', JSON.stringify('productosLS'));
                 });
-                
-            function leerLS(){
-                let productosLS;
-                productosLS = this.obtenerProductosLS();
-                productosLS.forEach(producto => {
-                    const row = document.createElement ('tr');
-                    row.innerHTML = `
-                    <td>
-                    <img src="${producto.imagen}" width: 100>
-                    </td>
-                    <td>
-                    ${producto.titulo}
-                    ${producto.precio}
-                    </td>
-                    <td>
-                    <a href="#" class= "borrar-producto fas fa-times-circule" data-id= ${productO.id} ></a>
-                    </td>
-                    `;
-                    
+            } else {
+                carrito.push({
+                    id: producto.id,
+                    img: producto.img,
+                    peso: producto.peso,
+                    nombre: producto.nombre,
+                    precio: producto.precio,
+                    cantidad: producto.cantidad,
                 });
-                listaProductos.appendChild (row);
-               
             }
-        }
+            carritoCounter();
+            GuardarLocal();
+        });
+    });
+});
+};
 
-    })}
-}
+fetchData();
 
-function vaciarLS(){
-    localStorage.clear();
+    const productosCarrito= ()=>{
+    modalContainer.innerHTML="";
+    modalContainer.style.display= "flex";
+    const modalHeader = document.createElement("div");
+    modalHeader.className= "modal-header"
+    modalHeader.innerHTML=`
+    <h1 class="modal-header-title"> Carrito </h1>
+    `;
+    modalContainer.append(modalHeader);
+
+    const modalbutton = document.createElement("h1");
+    modalbutton.innerHTML="x";
+    modalbutton.className= "modal-header-button";
+
+    modalbutton.addEventListener("click",()=>{
+        modalContainer.style.display="none";
+    })
+
+    modalHeader.append(modalbutton);
+
+    carrito.forEach((producto)=>{
+        let carritoContent = document.createElement("div");
+        carritoContent.className="modal-content";
+        carritoContent.innerHTML=  `
+        <img src="${producto.img}" class="card-img-top" >
+        <h5 >${producto.nombre}</h5>
+        <p>${producto.peso} $ ${producto.precio}</p>
+        <button class="formaBotonRestar"> - </button>
+        <p> cantidad: ${producto.cantidad} </p>
+        <button class="formaBotonSumar"> + </button>
+        <p> total: ${producto.cantidad * producto.precio}</p>
+        <button class= "delete-product"> x </button>
+        `;
+        modalContainer.append(carritoContent);
+        let restar= carritoContent.querySelector(".formaBotonRestar");
+
+        restar.addEventListener("click", ()=>{
+
+            producto.cantidad !== 1 && producto.cantidad -- ;
+
+            pintarCarrito();
+            GuardarLocal();
+        });
+
+        let sumar= carritoContent.querySelector(".formaBotonSumar");
+        sumar.addEventListener("click", ()=>{
+            producto.cantidad ++ ;
+            pintarCarrito();
+            GuardarLocal();
+        });
+
+        let eliminar = carritoContent.querySelector(".delete-product")
+        eliminar.addEventListener("click", ()=>{
+            Toastify({
+                text: "Producto eliminado",
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top", 
+                position: "right", 
+                stopOnFocus: true, 
+                style: {
+                background: "grey",
+                },
+                onClick: function(){} 
+            }).showToast();
+            eliminarProducto(producto.id);
+            
+        })
+        
+    });
+
     }
-    function procesarPedido(e){
-        e.preventDefault();
-        if (this.obtenerProductosLS().length === 0){
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'El carrito esta vacio, agrega tus productos',
-                timer: 2000,
-                showConfirmButton: false,
-
-        },
-        location.href= "carrito.html",
-            )}
-        }
-
-        function calcularTotal(){
-            let productoLS;
-            let total = 0 , subtotal = 0, iva = 0 ;
-            productoLS = this.obtenerProductosLS();
-        }
-
-
-        // darle funcionalidad al boton de enviar en carrrito
-       function escuchar(){
-        
-       enviarBtn.addEventListener ('click', enviarBtn);
-
-       } 

@@ -19,3 +19,5 @@ node_modules
 package.json
 
 
+# git ignore app2.js
+app2.js
