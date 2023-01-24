@@ -56,11 +56,7 @@ body{
     font-size: 15px;
 
 }
-.carrito{
-    display: flex;
-    font-size: 15px;
-    margin: 0 20px;
-}
+
 *::before, ::after {
     box-sizing: border-box;
 }
@@ -128,13 +124,24 @@ ul{
     flex-direction: column;
     gap: 1em;
  }
-
- /* RESPONSIVE */
-@media screen and (min-width: 992px){
-    .container{
-        padding: 0 2em;
-
-    }
+ /* carrito.html */
+ .carrito{
+   display: flex;
+   font-size: 15px;
+   margin: 0 20px;
+}
+.button {
+	pointer-events: auto;
+	cursor: pointer;
+	background: #e7e7e7;
+	border: none;
+	padding: 1.5rem 3rem;
+	margin: 0;
+	font-family: inherit;
+	font-size: inherit;
+	position: relative;
+	display: inline-block;
+   width: 20px;
 }
 
 /*----HEADER-----*/
@@ -272,6 +279,13 @@ height: fit-content;
      max-width: 1140px;
    }
  }
+ /* RESPONSIVE */
+@media screen and (min-width: 992px){
+   .container{
+       padding: 0 2em;
+
+   }
+}
  /*FIN REESPONSIVE  */
 
  /* boostrap */

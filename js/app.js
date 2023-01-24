@@ -204,3 +204,6 @@ function vaciarLS(){
             productoLS = this.obtenerProductosLS();
         }
 
+
+        // darle funcionalidad al boton de enviar en carrrito
+        enviarBtn.addEventListener('click',)
