@@ -19,9 +19,9 @@ const fetchData = async () => {
 // Funcion para pintar los productos
 const pintarCards = (productos) => {
     // Creamos un array para guardar los productos del carrito
-let carrito =JSON.parse(localStorage.getItem("carrito")) || [];
+    let carrito =JSON.parse(localStorage.getItem("carrito")) || [];
 // Funcion para guardar el carrito en el local storage
-const GuardarLocal = () => {
+     const GuardarLocal = () => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 };
 // Funcion para controlar la cantidad de productos en el carrito
@@ -328,10 +328,21 @@ items.addEventListener("click", (e) => {
             } else {
                 content.innerHTML = ` <p> Gracias por contactarnos </p> `;
             }
+            Toastify({
+                text: "Envio exitoso",
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                style: {
+                    background: "linear-gradient(to right, green, green)",
+                },
+                onClick: function () {},
+            }).showToast();
+
         });
     }   
 
-    //  creamos la funcion para guardar los productos en el local storage  
-    function GuardarLocal() {
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-    }
+
