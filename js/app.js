@@ -3,7 +3,6 @@ const verCarrito = document.getElementById("verCarrito")
 const modalContainer = document.getElementById("modal-container")
 const cantidadCarrito = document.getElementById("cantidadCarrito")
 const producto = document.getElementById("producto")
-const productos = document.getElementById("productos")
 
 
 // Traemos los datos del JSON
@@ -247,15 +246,16 @@ function carritoActions(){
 
 
 // Creamos los eventos
-
+function carrito() {
 producto.addEventListener("click", (e) => {
     agregarCarrito(e)
 })
 
+
 items.addEventListener("click", (e) => {
     btn(e)
 })
-
+}
 // Funcion para agregar productos al carrito
         // pintamos el carrito en caso de que exista informacion
 			producto.forEach((producto) => {
@@ -345,7 +345,7 @@ items.addEventListener("click", (e) => {
                 
                 let formulario = document.querySelector("#form-control");
 
-            }
+            
 
                 //  hacemos un filtro de busqueda para la barra de busqueda 
 
@@ -363,7 +363,7 @@ items.addEventListener("click", (e) => {
                 
 
             }
-          
+        }
 
         
 
