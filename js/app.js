@@ -3,6 +3,7 @@ const verCarrito = document.getElementById("verCarrito")
 const modalContainer = document.getElementById("modal-container")
 const cantidadCarrito = document.getElementById("cantidadCarrito")
 const producto = document.getElementById("producto")
+const productos = document.getElementById("productos")
 
 
 // Traemos los datos del JSON
