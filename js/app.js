@@ -1,8 +1,8 @@
-const contenedorCards = document.getElementById("contenedorCards")
-const verCarrito = document.getElementById("verCarrito")
-const modalContainer = document.getElementById("modal-container")
-const cantidadCarrito = document.getElementById("cantidadCarrito")
-const producto = document.getElementById("producto")
+const contenedorCards = document.getElementById("contenedorCards");
+const verCarrito = document.getElementById("verCarrito");
+const modalContainer = document.getElementById("modal-container");
+const cantidadCarrito = document.getElementById("cantidadCarrito");
+const producto = document.getElementById("producto");
 
 
 // Traemos los datos del JSON
@@ -10,7 +10,7 @@ const producto = document.getElementById("producto")
         fetch("../data.json")
             .then((response) => response.json())
             .then((productos) => {
-                pintarCards(productos);
+                contenedorCards(productos);
             });
 
     };
@@ -394,3 +394,20 @@ items.addEventListener("click", (e) => {
     }   
 
 
+// boton procesarCompra
+function procesarCompra() {
+    let boton = document.getElementById("procesar-compra");
+    boton.addEventListener("click", function () {
+        if (carrito.length === 0) {
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        } else {
+            location.href = "carrito.html";
+        }
+    });
+}
