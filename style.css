@@ -7,7 +7,7 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    background: #ecdfdf;
+    background: #d3adad;
 }
 
 .container{
@@ -15,7 +15,12 @@ body{
     margin: auto;
     padding-left: 25px;
     padding-right: 25px;
-}
+     width: 100%;
+     padding-right: 15px;
+     padding-left: 15px;
+     margin-right: auto;
+     margin-left: auto;
+   }
 
 .navbar{
     display: flex;
@@ -51,12 +56,6 @@ body{
     margin: 0 20px;
 }
 
-.therapy{
-    display: flex;
-    font-size: 15px;
-
-}
-
 *::before, ::after {
     box-sizing: border-box;
 }
@@ -82,7 +81,7 @@ ul{
  input::placeholder{
     font: inherit;
  }
- h1, h2, h3, h4 {
+ h1, h2, h3, h4,h5,h6 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
  }
  h1{
@@ -104,26 +103,9 @@ ul{
     font-size: 1em;
  }
 
- .container{
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: auto;
-   width: 100%;
-   padding-right: 15px;
-   padding-left: 15px;
-   margin-right: auto;
-   margin-left: auto;
- }
 
- flexitem{
-    display: flex;
-    align-items: center;
- }
- flexcol{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
- }
+
+ 
  /* carrito.html */
  .carrito{
    display: flex;
@@ -212,8 +194,9 @@ height: fit-content;
 
 }
 /* para  el gif loading */
-.cargando {
-   display: none;
+#cargando {
+   display: block;
+   width: 70%;
 }
 /* cards de productos */
 
