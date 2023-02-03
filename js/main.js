@@ -11,12 +11,13 @@ function mostrarProductos (productos){
 
     productos.forEach( prod => {
         let card = document.createElement('div');
+        card.classList.add('card');
 
-        card.innerHTML = ` <h2>${prod.nombre}</h2>
-                            <h5>${prod.marca}</h5>
-                            <p>${prod.detalles}</p> 
-                            <p>$${prod.precio}</p>
-                         <img src="${prod.imagen}">
+        card.innerHTML = ` <h2 class="nombre">${prod.nombre}</h2>
+                            <h5 class="marca">${prod.marca}</h5>
+                            <p class="descripcion">${prod.detalles}</p> 
+                            <p class="precio">$${prod.precio}</p>
+                           <img class="img" src="${prod.imagen}">
 
                          <button class="btn-comprar bg-success" id="${prod.id}"> Comprar </button>
 
@@ -41,3 +42,55 @@ function agregarCarrito(e,prods){
     const finder = prods.filter  (el=> el.id === parseInt(e.target.id))
     console.log (finder)
 }
+
+//carrito
+const carrito = [];
+
+function agregarAlCarrito (producto){
+    carrito.push(producto)
+}
+
+//mostrar carrito
+function mostrarCarrito (){
+    console.log (carrito)
+}
+
+//eliminar del carrito
+function eliminarDelCarrito (id){
+    carrito = carrito.filter (el => el.id !== id)
+}
+
+//vaciar carrito
+function vaciarCarrito (){
+    carrito = []
+}
+
+//calcular total
+function calcularTotal (){
+    let total = 0;
+    carrito.forEach (el => total += el.precio)
+    return total
+}
+
+//calcular cantidad
+function calcularCantidad (){
+    let cantidad = 0;
+    carrito.forEach (el => cantidad += el.cantidad)
+    return cantidad
+}
+
+//calcular subtotal
+function calcularSubtotal (){
+    let subtotal = 0;
+    carrito.forEach (el => subtotal += el.precio * el.cantidad)
+    return subtotal
+}
+
+//calcular iva
+function calcularIva (){    
+    return calcularSubtotal() * 0.21
+}
+
+
+
+
