@@ -255,6 +255,45 @@ height: fit-content;
    border: 1px solid #ccc;
    border-radius: 5px;
 }
+/* barraBusqueda */
+input[type="text"]{
+   width: 50vh;
+   padding: 10px;
+   outline: none;
+   font-size: 17px;
+   font-weight: 600;
+   border: 1px solid rgb(246, 189, 247);
+   float: left;
+   background: #f1f1f1;
+}
+input[type="text"]:focus{
+   outline: 3px solid #ddd;
+}
+#listaArticulos{
+   padding: 20px;
+   font-size: 30px;
+   margin-top: 20px;
+   list-style: none;
+   font-weight: 600;
+   text-align: center;
+   padding: 0;
+   width: 50vh;
+   position: absolute;
+   z-index: 1;
+}
+#barraBusqueda{
+   width: 50vh;
+   margin: 0 auto;
+   position: relative;
+   
+}
+.search-list {
+   display: none;
+ }
+ 
+ input:focus + .search-list {
+   display: block;
+ } 
 /* RESPONSIVE */
 
 @media (min-width: 576px) {

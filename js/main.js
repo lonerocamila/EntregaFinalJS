@@ -1,10 +1,29 @@
-const url = "./data.json";
+const contenedorProductos = document.querySelector('#container');
+const buttonComprar = document.querySelectorAll (".btn-comprar");
+const filtro = document.getElementById("barraBusqueda");
 
-fetch(url)  
-.then (res=> res.json())
-.then (data => mostrarProductos(data))
+let carrito = [];
 
-const contenedorProductos = document.querySelector('#container')
+const carritoContenedor = document.querySelector("#carritoContenedor");
+const vaciarCarrito = document.querySelector("#vaciarCarrito");
+const precioTotal = document.querySelector("#precioTotal");
+const activarFuncion = document.querySelector("#activarFuncion");
+const procesarCompra = document.querySelector("#procesarCompra");
+const totalProceso = document.querySelector("#totalProceso");
+const formulario = document.querySelector('#procesar-pago')
+
+const btn = document.querySelector('#button')
+
+
+
+const fetchData = async() => {
+   fetch("./data.json")  
+    .then (res=> res.json())
+    .then (data => mostrarProductos(data))
+
+}
+fetchData()
+
 
 function mostrarProductos (productos){
     // console.log (productos)
@@ -13,84 +32,162 @@ function mostrarProductos (productos){
         let card = document.createElement('div');
         card.classList.add('card');
 
-        card.innerHTML = ` <h2 class="nombre">${prod.nombre}</h2>
+        card.innerHTML = `  <h2 class="nombre">${prod.nombre}</h2>
                             <h5 class="marca">${prod.marca}</h5>
                             <p class="descripcion">${prod.detalles}</p> 
                             <p class="precio">$${prod.precio}</p>
-                           <img class="img" src="${prod.imagen}">
+                            <img class="img" src="${prod.imagen}">
 
-                         <button class="btn-comprar bg-success" id="${prod.id}"> Comprar </button>
+                         <button class="btn-comprar bg-success" onclick="agregarProducto(${prod.id})">Comprar</button>
 
 
-        `
-        contenedorProductos.appendChild(card)
+        `   
+
+       contenedorProductos.appendChild(card)
+
     });
-    // por fuera del foreach capturo el button
-    const buttonComprar = document.querySelectorAll (".btn-comprar");
-    buttonComprar.forEach(btn => {
-        btn.addEventListener ('click', (e)=> agregarCarrito(e, productos))
 
+
+
+// carrito
+
+const mostrarCarrito = () => {
+    const modalBody = document.querySelector(".modal .modal-body");
+    if (modalBody) {
+      modalBody.innerHTML = "";
+      carrito.forEach((prod) => {
+        const { id, nombre, precio, desc, img, cantidad } = prod;
+        console.log(modalBody);
+        modalBody.innerHTML += `
+        <div class="modal-contenedor">
+          <div>
+          <img class="img-fluid img-carrito" src="${img}"/>
+          </div>
+          <div>
+          <p>Producto: ${nombre}</p>
+        <p>Precio: ${precio}</p>
+        <p>Cantidad :${cantidad}</p>
+        <button class="btn btn-danger"  onclick="eliminarProducto(${id})">Eliminar producto</button>
+          </div>
+        </div>
         
+    
+        `;
+      });
+    }
+  
+    if (carrito.length === 0) {
+      console.log("Nada");
+      modalBody.innerHTML = `
+      <p class="text-center text-primary parrafo">¡Aun no agregaste nada!</p>
+      `;
+    } else {
+      console.log("Algo");
+    }
+    carritoContenedor.textContent = carrito.length;
+  
+    if (precioTotal) {
+      precioTotal.innerText = carrito.reduce(
+        (acc, prod) => acc + prod.cantidad * prod.precio,
+        0
+      );
+    }
+  
+    guardarStorage();
+  };
+  
+  function guardarStorage() {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+  }
+  
+  function eliminarProducto(id) {
+    const juegoId = id;
+    carrito = carrito.filter((juego) => juego.id !== juegoId);
+    mostrarCarrito();
+  }
+  function procesarPedido() {
+    carrito.forEach((prod) => {
+      const listaCompra = document.querySelector("#lista-compra tbody");
+      const { id, nombre, precio, img, cantidad } = prod;
+      if (listaCompra) {
+        const row = document.createElement("tr");
+        row.innerHTML += `
+                <td>
+                <img class="img-fluid img-carrito" src="${img}"/>
+                </td>
+                <td>${nombre}</td>
+              <td>${precio}</td>
+              <td>${cantidad}</td>
+              <td>${precio * cantidad}</td>
+              `;
+        listaCompra.appendChild(row);
+      }
     });
-
+    totalProceso.innerText = carrito.reduce(
+      (acc, prod) => acc + prod.cantidad * prod.precio,
+      0
+    );
+  }
+  
+   function enviarCompra(e){
+     e.preventDefault()
+     const cliente = document.querySelector('#cliente').value
+     const email = document.querySelector('#correo').value
+  
+     if(email === '' || cliente == ''){
+       Swal.fire({
+         title: "¡Debes completar tu email y nombre!",
+         text: "Rellena el formulario",
+         icon: "error",
+         confirmButtonText: "Aceptar",
+     })
+   } else {
+  
+    const btn = document.getElementById('button');
+  
+  // document.getElementById('procesar-pago')
+  //  .addEventListener('submit', function(event) {
+  //    event.preventDefault();
+  
+     btn.value = 'Enviando...';
+  
+     const serviceID = 'default_service';
+     const templateID = 'template_qxwi0jn';
+  
+     email.sendForm(serviceID, templateID, this)
+      .then(() => {
+        btn.value = 'Finalizar compra';
+        alert('Correo enviado!');
+      }, (err) => {
+        btn.value = 'Finalizar compra';
+        alert(JSON.stringify(err));
+      });
+      
+     const spinner = document.querySelector('#spinner')
+     spinner.classList.add('d-flex')
+     spinner.classList.remove('d-none')
+  
+     setTimeout(() => {
+       spinner.classList.remove('d-flex')
+       spinner.classList.add('d-none')
+       formulario.reset()
+  
+       const alertExito = document.createElement('p')
+       alertExito.classList.add('alert', 'alerta', 'd-block', 'text-center', 'col-12', 'mt-2', 'alert-success')
+       alertExito.textContent = 'Compra realizada correctamente'
+       formulario.appendChild(alertExito)
+  
+       setTimeout(() => {
+         alertExito.remove()
+       }, 3000)
+  
+  
+     }, 3000)
+   }
+   localStorage.clear()
+  
+   
+    }       
 }
 
-function agregarCarrito(e,prods){
-    console.log (prods);
-    console.log (e.target.id)
-
-    const finder = prods.filter  (el=> el.id === parseInt(e.target.id))
-    console.log (finder)
-}
-
-//carrito
-const carrito = [];
-
-function agregarAlCarrito (producto){
-    carrito.push(producto)
-}
-
-//mostrar carrito
-function mostrarCarrito (){
-    console.log (carrito)
-}
-
-//eliminar del carrito
-function eliminarDelCarrito (id){
-    carrito = carrito.filter (el => el.id !== id)
-}
-
-//vaciar carrito
-function vaciarCarrito (){
-    carrito = []
-}
-
-//calcular total
-function calcularTotal (){
-    let total = 0;
-    carrito.forEach (el => total += el.precio)
-    return total
-}
-
-//calcular cantidad
-function calcularCantidad (){
-    let cantidad = 0;
-    carrito.forEach (el => cantidad += el.cantidad)
-    return cantidad
-}
-
-//calcular subtotal
-function calcularSubtotal (){
-    let subtotal = 0;
-    carrito.forEach (el => subtotal += el.precio * el.cantidad)
-    return subtotal
-}
-
-//calcular iva
-function calcularIva (){    
-    return calcularSubtotal() * 0.21
-}
-
-
-
-
+    

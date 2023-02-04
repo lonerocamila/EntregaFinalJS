@@ -21,3 +21,15 @@ package.json
 
 # git ignore app2.js
 app2.js
+
+# git ignore node_modules
+node_modules
+
+# git ignore package-lock.json
+package-lock.json
+
+# git ignore package.json
+package.json
+
+# git ignore .vscode
+.vscode
