@@ -4,6 +4,7 @@ const filtro = document.getElementById("barraBusqueda");
 
 let carrito = [];
 
+const contenedor = document.querySelector("#contenedor");
 const carritoContenedor = document.querySelector("#carritoContenedor");
 const vaciarCarrito = document.querySelector("#vaciarCarrito");
 const precioTotal = document.querySelector("#precioTotal");
@@ -11,9 +12,6 @@ const activarFuncion = document.querySelector("#activarFuncion");
 const procesarCompra = document.querySelector("#procesarCompra");
 const totalProceso = document.querySelector("#totalProceso");
 const formulario = document.querySelector('#procesar-pago')
-
-const btn = document.querySelector('#button')
-
 
 
 const fetchData = async() => {
@@ -154,7 +152,7 @@ const mostrarCarrito = () => {
      const serviceID = 'default_service';
      const templateID = 'template_qxwi0jn';
   
-     email.sendForm(serviceID, templateID, this)
+     emailjs.sendForm(serviceID, templateID, this)
       .then(() => {
         btn.value = 'Finalizar compra';
         alert('Correo enviado!');
